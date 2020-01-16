@@ -40,10 +40,8 @@ public class TechJobs {
                 } else {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
-//                    ArrayList<String> sortedResults = results.sort();
-
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
-
+                    Collections.sort(results);
                     // Print list of skills, employers, etc
                     for (String item : results) {
                         System.out.println(item);
@@ -58,6 +56,7 @@ public class TechJobs {
                 // What is their search term?
                 System.out.println("\nSearch term: ");
                 String searchTerm = in.nextLine();
+
 
                 if (searchField.equals("all")) {
                     printJobs(findByValue(searchTerm));
@@ -132,7 +131,7 @@ public class TechJobs {
         for (HashMap<String,String> row: allJobs){
 
             for(Map.Entry<String, String> column: row.entrySet()){
-                if (column.getValue().toUpperCase().contains(searchTerm)){
+                if (column.getValue().contains(searchTerm)){
                     if(Arrays.asList(matchingItems).contains(row)){
                         continue;
                     }
